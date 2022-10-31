@@ -10,21 +10,29 @@ public class InitailizeFloor : MonoBehaviour
     public GameObject Cube; // The cube
     public GameObject GridPrefab; // A grid
 
-    private const int FLOOR_SIZE = 4; // Floor size = 4*4
+    private const int FLOOR_SIZE = 3; // Floor size = 4*4
     private GameObject[,] floor = new GameObject[FLOOR_SIZE, FLOOR_SIZE]; // Store grid
 
     void Start() {
-        Material[] FaceColors = Cube.GetComponent<MeshRenderer>().materials;
+        Material[] faceMaterials = Cube.GetComponent<MeshRenderer>().materials; // Get cube 6 faces' materail
 
         for (int i = 0; i < FLOOR_SIZE; i++) {
             for (int j = 0; j < FLOOR_SIZE; j++) {
                 floor[i, j] = Instantiate(GridPrefab); 
                 floor[i, j].transform.position = new Vector3(i, 0, j);
                 floor[i, j].transform.parent = this.transform;
-                floor[i, j].GetComponent<MeshRenderer>().material = FaceColors[Random.Range(0, FaceColors.Length)];
+                floor[i, j].GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
+
+                GameObject flipFloor = Instantiate(GridPrefab);
+                flipFloor.transform.position = new Vector3(i, 0, j);
+                flipFloor.transform.rotation = Quaternion.Euler(180, 0, 0);
+                flipFloor.transform.parent = this.transform;
+                flipFloor.GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
             }
 
         }
+
+
     }
     void Update() {
 
