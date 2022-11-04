@@ -8,26 +8,31 @@ using UnityEngine.ProBuilder.Shapes;
 public class InitailizeFloor : MonoBehaviour
 {
     public GameObject Cube; // The cube
-    public GameObject GridPrefab; // A grid
+    public GameObject FacePrefab; // A grid
+    public int NumOfFacesCounter = 0;
 
-    private const int FLOOR_SIZE = 3; // Floor size = 4*4
-    private GameObject[,] floor = new GameObject[FLOOR_SIZE, FLOOR_SIZE]; // Store grid
+    private int NumOfFaces; // Number of faces of floor
+    private int FLOOR_SIZE = 3; // Floor size = 4*4
+    private GameObject[,] floor; // Store grid
 
     void Start() {
+
         Material[] faceMaterials = Cube.GetComponent<MeshRenderer>().materials; // Get cube 6 faces' materail
+        floor = new GameObject[FLOOR_SIZE, FLOOR_SIZE];
+        NumOfFaces = FLOOR_SIZE * FLOOR_SIZE;
 
         for (int i = 0; i < FLOOR_SIZE; i++) {
             for (int j = 0; j < FLOOR_SIZE; j++) {
-                floor[i, j] = Instantiate(GridPrefab); 
+                floor[i, j] = Instantiate(FacePrefab); 
                 floor[i, j].transform.position = new Vector3(i, 0, j);
                 floor[i, j].transform.parent = this.transform;
                 floor[i, j].GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
 
-                GameObject flipFloor = Instantiate(GridPrefab);
-                flipFloor.transform.position = new Vector3(i, 0, j);
-                flipFloor.transform.rotation = Quaternion.Euler(180, 0, 0);
-                flipFloor.transform.parent = this.transform;
-                flipFloor.GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
+                //GameObject flipFloor = Instantiate(FacePrefab);
+                //flipFloor.transform.position = new Vector3(i, 0, j);
+                //flipFloor.transform.rotation = Quaternion.Euler(180, 0, 0);
+                //flipFloor.transform.parent = this.transform;
+                //flipFloor.GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
             }
 
         }
@@ -35,7 +40,6 @@ public class InitailizeFloor : MonoBehaviour
 
     }
     void Update() {
-
     }
     void SetColor(ProBuilderMesh pMesh) {
         Debug.Log(pMesh.colors[1].ToString());
