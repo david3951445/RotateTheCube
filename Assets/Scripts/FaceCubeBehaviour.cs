@@ -29,9 +29,13 @@ public class FaceCubeBehaviour : MonoBehaviour
     private Vector3 supportEdge = new Vector3();
 
     // Childs
-    // [Right  Left Up  Down  Forward Back  ]
-    // [Orange Blue Red Green Purple  Yellow]
-    private FaceCollision[] faces; 
+    // Cube rotation direction |    Right   Left    Up      Down    Forward Back    
+    // Color of faces          |    Orange  Blue    Red     Green   Purple  Yellow  
+    // Number of faces         |    0       1       2       3       4       5       
+    // Normal vector of faces  |    +x      -x      +y      -y      +z      -z      
+    private FaceCollision[] faces;
+    private int[] facesNumbers = { 0, 1, 2, 3, 4, 5 }; // Can omit and use faces[]
+    private int facesIndex = 0;
 
     void Start() {
         size = transform.localScale.x;
@@ -45,26 +49,37 @@ public class FaceCubeBehaviour : MonoBehaviour
     void Update() {
         //Debug.DrawRay(startPoint, 2 * (endPoint - startPoint));
         if (!isRotating) {
-            if (Input.GetKey(KeyCode.RightArrow)) {
+            if (Input.GetKey(KeyCode.D)) { // Right
                 supportPoint = transform.localPosition + new Vector3(halfSize, -halfSize, 0);
                 supportEdge = Vector3.forward;
+                facesIndex = 0;
                 startMove();
             }
-            if (Input.GetKey(KeyCode.LeftArrow)) {
+            if (Input.GetKey(KeyCode.A)) { // Left
                 supportPoint = transform.localPosition + new Vector3(-halfSize, -halfSize, 0);
                 supportEdge = Vector3.back;
+                facesIndex = 1;
                 startMove();
             }
-            if (Input.GetKey(KeyCode.UpArrow)) { // Forward
+            if (Input.GetKey(KeyCode.Q)) { // Up
+                Debug.Log("You press up");
+            }
+            if (Input.GetKey(KeyCode.E)) { // Down
+                Debug.Log("You press down");
+            }
+            if (Input.GetKey(KeyCode.W)) { // Forward
                 supportPoint = transform.localPosition + new Vector3(0, -halfSize, halfSize);
                 supportEdge = Vector3.left;
+                facesIndex = 4;
                 startMove();
             }
-            if (Input.GetKey(KeyCode.DownArrow)) { // Back
+            if (Input.GetKey(KeyCode.S)) { // Back
                 supportPoint = transform.localPosition + new Vector3(0, -halfSize, -halfSize);
                 supportEdge = Vector3.right;
+                facesIndex = 5;
                 startMove();
             }
+
         }
         else {
             //Debug.Log(GetComponentInChildren<FloorCollision>().isTriggered);
@@ -74,33 +89,65 @@ public class FaceCubeBehaviour : MonoBehaviour
     }
 
     private void startMove() {
+        // Unvalid rotate
+
+        // Valid rotate
+        //RotateFacesNumbers();
         isRotating = true;
+        faces[facesNumbers[facesIndex]].isTriggered = false;
         MoveText.GetComponent<TextMeshProUGUI>().text = $"Move: {++moveCounter}";
     }
 
-    void Rotate90() {
-        float delta = DegreePerSecond * Time.deltaTime;
-        rotatedAngle += delta;
-        if (rotatedAngle - 90 >= 0) { // Exceed 90, rotate finish
-            delta -= rotatedAngle - 90; // Make it not exceed 90
+    private void Rotate90() {
+        float offsetAngle = DegreePerSecond * Time.deltaTime;
+        rotatedAngle += offsetAngle;
+        if (faces[facesNumbers[facesIndex]].isTriggered) { // Collide the face, rotate finish
+            offsetAngle -= rotatedAngle - 90; // Make it not exceed 90
             rotatedAngle = 0;
             isRotating = false;
+            RotateFacesNumbers();
+            //foreach (var item in facesNumbers) {
+            //    Debug.Log(item.ToString());
+            //}
+
         }
-        transform.RotateAround(supportPoint, supportEdge, -delta);
+        transform.RotateAround(supportPoint, supportEdge, -offsetAngle);
     }
 
-    // The current 
-    // Axis  | x       -x    y    -y     z       -z
-    // Color | Orange  Blue  Red  green  Purple  Yellow
-    // Num   | 1       2     3    4      5       6
-    private int[] cubeState = { 1, 2, 3, 4, 5, 6 };
-
     // Possible permutations (4 rotations of cube w.r.t. x and z axis)
-    // +x (3645), -x (3546), +z (3142), -z(4132)
-    void Permute() {
-        // updaate new cube state
+    // x+90 (2534), x-90 (2435), z+90 (0312), z-90(0213)
+    private void RotateFacesNumbers() {
+        // updaate new cube state, facesNumbers
+        switch (facesIndex) {
+            case 0: // Right
+                Permute(0, 3, 1, 2);
+                break;
+            case 1: // Left
+                Permute(0, 2, 1, 3);
+                break;
+            case 2: // Up
+                Debug.Log("Permute, Up");
+                break;
+            case 3: // Down
+                Debug.Log("Permute, Down");
+                break;
+            case 4: // Forward
+                Permute(2, 4, 3, 5);
+                break;
+            case 5: // Back
+                Permute(2, 5, 3, 4);
+                break;
+            default:
+                break;
+        }
+    }
 
-        // return the color that face the floor to determine if cube can eliminate
+    private void Permute(int a, int b, int c, int d) { // Permutation of a permutation group
+        int temp = facesNumbers[d];
+        facesNumbers[d] = facesNumbers[c];
+        facesNumbers[c] = facesNumbers[b];
+        facesNumbers[b] = facesNumbers[a];
+        facesNumbers[a] = temp;
     }
 
 }

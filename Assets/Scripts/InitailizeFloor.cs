@@ -9,12 +9,19 @@ public class InitailizeFloor : MonoBehaviour
 {
     public GameObject Cube; // The cube
     public GameObject FacePrefab; // A grid
-    public int NumOfFacesCounter = 0;
 
     private int NumOfFaces; // Number of faces of floor
     private int FLOOR_SIZE = 3; // Floor size = 4*4
     private GameObject[,] floor; // Store grid
 
+    private int numOfFacesCounter = 0;
+    public int NumOfFacesCounter {
+        get { return numOfFacesCounter; }
+        set {
+            numOfFacesCounter = value;
+            Debug.Log(NumOfFacesCounter);
+        }
+    }
     void Start() {
 
         Material[] faceMaterials = Cube.GetComponent<MeshRenderer>().materials; // Get cube 6 faces' materail
@@ -34,41 +41,10 @@ public class InitailizeFloor : MonoBehaviour
                 //flipFloor.transform.parent = this.transform;
                 //flipFloor.GetComponent<MeshRenderer>().material = faceMaterials[Random.Range(0, faceMaterials.Length)];
             }
-
         }
 
 
     }
     void Update() {
-    }
-    void SetColor(ProBuilderMesh pMesh) {
-        Debug.Log(pMesh.colors[1].ToString());
-        // Cycle through each unique vertex in the cube (8 total), and assign a color
-        // to the index in the sharedIndices array.
-        int sharedVertexCount = pMesh.sharedVertices.Count;
-
-        Color[] vertexColors = new Color[sharedVertexCount];
-
-        for (int i = 0; i < sharedVertexCount; i++) {
-            //vertexColors[i] = Color.red;
-
-            vertexColors[i] = Color.HSVToRGB((i / (float)sharedVertexCount) * 360f, 1f, 1f);
-        }
-
-        // Now go through each face (vertex colors are stored the pb_Face class) and
-        // assign the pre-calculated index color to each index in the triangles array.
-        var colors = pMesh.colors;
-
-        for (int sharedIndex = 0; sharedIndex < pMesh.sharedVertices.Count; sharedIndex++) {
-            foreach (int index in pMesh.sharedVertices[sharedIndex]) {
-                colors[index] = vertexColors[sharedIndex];
-            }
-        }
-
-        pMesh.colors = colors;
-
-        // In order for these changes to take effect, you must refresh the mesh
-        // object.
-        pMesh.Refresh();
     }
 }

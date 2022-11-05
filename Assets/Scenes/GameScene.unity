@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24016
+  m_Name: pb_Mesh24044
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -344,6 +344,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -625,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca90e357c9b8d6d41b6ebab318b51801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DegreePerSecond: 180
+  DegreePerSecond: 360
   MoveText: {fileID: 1253550363}
   isRotating: 0
 --- !u!1 &705507993
@@ -1141,7 +1149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cube: {fileID: 1343874831}
   FacePrefab: {fileID: 1892325319034726432, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
-  NumOfFacesCounter: 0
 --- !u!4 &970794977
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,6 +1178,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1791,6 +1806,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -2145,6 +2168,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -2261,6 +2292,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -2368,6 +2407,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356561226}
     m_Modifications:
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: -9005907201566297374, guid: 95f52be202090364bb4946f924fb0a07, type: 3}
       propertyPath: m_IsTrigger
       value: 1

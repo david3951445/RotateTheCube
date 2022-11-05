@@ -15,21 +15,30 @@ public class FaceCollision : MonoBehaviour
     }
 
     //void OnCollisionEnter(Collision collision) {
-    //    Debug.Log("Collide");
-    //    foreach (ContactPoint contact in collision.contacts) {
-    //        Debug.DrawRay(contact.point, contact.normal, Color.white);
+    //    isTriggered = true;
+    //    //Debug.Log(isTriggered);
+    //    MeshRenderer mr = collision.gameObject.GetComponent<MeshRenderer>();
+    //    Debug.Log(GetComponent<MeshRenderer>().material.name);
+    //    Debug.Log(mr.sharedMaterial.name);
+    //    if (GetComponent<MeshRenderer>().material.name == mr.sharedMaterial.name) { // Same color
+    //        // Remove the floor color
+    //        //Debug.Log(mr.sharedMaterial.name);
+    //        //Debug.Log(noColorMaterial.name);
+    //        mr.material = noColorMaterial;
+    //        GetComponentInParent<InitailizeFloor>().NumOfFacesCounter++;
+    //        Debug.Log(GetComponentInParent<InitailizeFloor>().NumOfFacesCounter);
     //    }
     //}
+
     private void OnTriggerEnter(Collider other) {
+        isTriggered = true;
         MeshRenderer mr = other.gameObject.GetComponent<MeshRenderer>();
-        Material material = other.gameObject.GetComponent<MeshRenderer>().sharedMaterial;    
         if (GetComponent<MeshRenderer>().material.name == mr.sharedMaterial.name) { // Same color
             // Remove the floor color
             //Debug.Log(mr.sharedMaterial.name);
             //Debug.Log(noColorMaterial.name);
             mr.material = noColorMaterial;
             GetComponentInParent<InitailizeFloor>().NumOfFacesCounter++;
-            Debug.Log(GetComponentInParent<InitailizeFloor>().NumOfFacesCounter);
         }
     }
 }
