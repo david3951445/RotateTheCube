@@ -1,6 +1,11 @@
 # RotateTheCube
 Rotate the cube to eliminate the colors on floor
 
+- Game scence
+![game scence](/doc/game%20sence.png)
+
+
+
 ## Game objects
 
 ### Cube
